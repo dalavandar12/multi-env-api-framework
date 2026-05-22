@@ -25,7 +25,7 @@ from src.validators import validate_country_schema, validate_weather_response
 LOG = logging.getLogger(__name__)
 
 pytestmark = [
-    pytest.MarkDecorator(pytest.Mark("cross-env", (), {})),
+    getattr(pytest.mark, "cross-env"),
     pytest.mark.smoke,
 ]
 

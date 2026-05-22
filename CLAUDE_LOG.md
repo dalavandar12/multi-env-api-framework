@@ -474,3 +474,13 @@ Generation behavior is unchanged unless the user passes `--against`.
 - Kept test code unchanged; retry/timeout behavior is centralized in the client so all environments inherit it.
 - Validation: lint remains green after the change (`make lint`).
 
+---
+
+## Session 6: CI Network Stability Tuning (2026-05-22)
+
+- Tuned `ApiClient` transport profile for CI network jitter and TLS handshake delays:
+  connect timeout increased to `12s`, read timeout kept at `30s`, retries reduced to `2`, backoff `1s`.
+- Reason: GitHub-hosted runners showed intermittent Open-Meteo TLS/read timeouts despite passing locally.
+- Replaced private pytest marker construction in `tests/test_cross-env.py` with a public marker access pattern (`getattr(pytest.mark, "cross-env")`) to remove deprecation noise during collection.
+- Validation: lint remains green and smoke collection no longer emits the previous cross-env marker deprecation warning.
+

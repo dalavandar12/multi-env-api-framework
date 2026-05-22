@@ -15,10 +15,10 @@ from utils.poller import poller
 
 LOG = logging.getLogger(__name__)
 
-CONNECT_TIMEOUT_S = 5.0
+CONNECT_TIMEOUT_S = 12.0
 READ_TIMEOUT_S = 30.0
 REQUEST_TIMEOUT: tuple[float, float] = (CONNECT_TIMEOUT_S, READ_TIMEOUT_S)
-REQUEST_RETRIES = 3
+REQUEST_RETRIES = 2
 RETRY_BACKOFF_S = 1.0
 
 
