@@ -62,13 +62,13 @@ jobs:
         run: make clean-allure
 
       - name: Run weather tests
-        run: pytest --env weather --alluredir=allure-results -v
+        run: pytest --env weather -m smoke --alluredir=allure-results -v
 
       - name: Run countries tests
-        run: pytest --env countries --alluredir=allure-results -v
+        run: pytest --env countries -m smoke--alluredir=allure-results -v
 
       - name: Run cross-env workflow tests
-        run: pytest --env cross-env --alluredir=allure-results -v
+        run: pytest --env cross-env -m smoke --alluredir=allure-results -v
 
       - name: Set up Java (Allure CLI)
         if: always()
