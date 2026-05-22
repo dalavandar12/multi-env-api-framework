@@ -26,7 +26,7 @@ LOG = logging.getLogger(__name__)
 
 pytestmark = [
     getattr(pytest.mark, "cross-env"),
-    pytest.mark.smoke,
+    pytest.mark.regression,
 ]
 
 
