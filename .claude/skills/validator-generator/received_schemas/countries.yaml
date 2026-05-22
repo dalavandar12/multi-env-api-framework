@@ -1,0 +1,40 @@
+# Curated schema for the REST Countries v3.1 API response.
+# Validates a SINGLE country object (the API often returns an array; the caller
+# unwraps it and passes one element here).
+
+component: countries
+validator_name: validate_countries_schema
+description: "Validates a single country object returned by REST Countries v3.1"
+
+shape:
+  type: object
+  required: [name, capital, population, currencies, languages]
+  fields:
+    name:
+      type: object
+      required: [common, official]
+      fields:
+        common:   { type: string, non_empty: true }
+        official: { type: string, non_empty: true }
+    capital:
+      type: array
+      item_type: string
+      non_empty: true
+    population:
+      type: integer
+      min: 0
+    currencies:
+      type: object
+    languages:
+      type: object
+    region:
+      type: string
+    subregion:
+      type: string
+    latlng:
+      type: array
+      item_type: number
+      min_length: 2
+      max_length: 2
+    independent:
+      type: boolean

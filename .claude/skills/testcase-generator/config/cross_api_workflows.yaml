@@ -1,0 +1,51 @@
+# Chained cross-API workflow recipes.
+#
+# generate_cases.py reads this file and emits one `cross_api_workflow` row for
+# each recipe whose components are all present in the parsed endpoint list.
+# Each row carries a `workflow_steps` column documenting the chained calls.
+#
+# To add a new workflow:
+#   1. Declare the components it touches.
+#   2. List the steps in order. Each step references a request endpoint and
+#      may extract fields from its response to feed the next step.
+#   3. Add validations that run after the last step.
+
+workflows:
+  - name: country_lookup_to_weather
+    description: >
+      Fetch a country's coordinates from REST Countries, then call Open-Meteo
+      with those coordinates and validate the weather response.
+    requires_components: [countries, weather]
+    priority: P0
+    steps:
+      - id: step1_country_lookup
+        component: countries
+        method: GET
+        path: /v3.1/name/{name}
+        path_params: {name: "germany"}
+        expect_status: 200
+        extract:
+          - from_response: "[0].latlng[0]"
+            as: latitude
+          - from_response: "[0].latlng[1]"
+            as: longitude
+      - id: step2_weather_forecast
+        component: weather
+        method: GET
+        path: /v1/forecast
+        query_params:
+          latitude: ${latitude}
+          longitude: ${longitude}
+          hourly: temperature_2m
+        expect_status: 200
+        validate:
+          - field: timezone
+            assertion: present
+          - field: hourly.temperature_2m
+            assertion: non_empty_list
+          - field: latitude
+            assertion: matches_input_within
+            tolerance: 0.5
+          - field: longitude
+            assertion: matches_input_within
+            tolerance: 0.5

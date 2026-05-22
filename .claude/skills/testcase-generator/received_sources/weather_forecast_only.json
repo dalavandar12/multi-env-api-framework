@@ -1,0 +1,81 @@
+[
+  {
+    "method": "GET",
+    "path": "https://api.open-meteo.com/v1/forecast",
+    "summary": "Open-Meteo forecast endpoint",
+    "tags": ["weather"],
+    "params_required": [
+      {
+        "name": "latitude",
+        "in": "query",
+        "type": "number",
+        "format": "float",
+        "enum": null,
+        "description": "Latitude in decimal degrees"
+      },
+      {
+        "name": "longitude",
+        "in": "query",
+        "type": "number",
+        "format": "float",
+        "enum": null,
+        "description": "Longitude in decimal degrees"
+      },
+      {
+        "name": "hourly",
+        "in": "query",
+        "type": "string",
+        "format": null,
+        "enum": ["temperature_2m"],
+        "description": "Requested hourly variables"
+      }
+    ],
+    "params_optional": [
+      {
+        "name": "timezone",
+        "in": "query",
+        "type": "string",
+        "format": null,
+        "enum": null,
+        "description": "Timezone name for output timestamps"
+      }
+    ],
+    "request_schema": {},
+    "response_schema": {
+      "type": "object",
+      "properties": {
+        "latitude": {"type": "number"},
+        "longitude": {"type": "number"},
+        "elevation": {"type": "number"},
+        "generationtime_ms": {"type": "number"},
+        "utc_offset_seconds": {"type": "integer"},
+        "timezone": {"type": "string"},
+        "timezone_abbreviation": {"type": "string"},
+        "hourly_units": {"type": "object"},
+        "hourly": {
+          "type": "object",
+          "properties": {
+            "time": {"type": "array", "items": {"type": "string"}},
+            "temperature_2m": {"type": "array", "items": {"type": "number"}}
+          }
+        }
+      }
+    },
+    "status_codes": [200, 400],
+    "examples": {
+      "valid": {
+        "latitude": 52.52,
+        "longitude": 13.41,
+        "hourly": "temperature_2m",
+        "timezone": "Europe/Berlin"
+      },
+      "invalid": {
+        "latitude": "not-a-number",
+        "longitude": 13.41,
+        "hourly": "temperature_2m"
+      }
+    },
+    "source_excerpt": "GET https://api.open-meteo.com/v1/forecast with latitude, longitude, hourly and optional timezone.",
+    "traceability": "https://api.open-meteo.com/v1/forecast"
+  }
+]

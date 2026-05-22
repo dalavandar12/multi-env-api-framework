@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm .claude/skills/testcase-generator/output/testcases_openapi_countries_* /tmp/petstore-mini.yaml /tmp/endpoints.json /tmp/rows.json && ls .claude/skills/testcase-generator/output/)",
+      "Bash(curl -s https://open-meteo.com/robots.txt)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{content_type}\\\\n\" https://api.open-meteo.com/v1/openapi.json)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{content_type}\\\\n\" https://api.open-meteo.com/v1/forecast?latitude=48.85\\\\&longitude=2.35\\\\&hourly=temperature_2m)",
+      "Bash(rm /tmp/petstore-mini.yaml .claude/skills/testcase-generator/output/testcases_openapi_countries_*.xlsx 2>/dev/null; ls .claude/skills/testcase-generator/output/)",
+      "Bash(rm .claude/skills/testcase-generator/input/old_spec.yaml .claude/skills/testcase-generator/input/petstore.yaml .claude/skills/testcase-generator/output/testcases_openapi_countries_*.xlsx 2>/dev/null; ls .claude/skills/testcase-generator/input/ .claude/skills/testcase-generator/output/)",
+      "Bash(grep -i \"status\\\\|error\\\\|404\\\\|400\\\\|429\\\\|500\" /var/folders/61/v3bbq5z53x3293f0jj6217y80000gq/T/generate_testcases_raw.txt | head -10)",
+      "Bash(grep -iE \"^\\\\s*[a-z_]+\\\\s*$|temperature_2m|wind|precipitation|cloud|humidity|past_days|forecast_days|past_minutely|forecast_minutely|forecast_hours|past_hours|timezone|temperature_unit|windspeed_unit|precipitation_unit|timeformat|models|start_date|end_date|current|hourly|daily|cell_selection|elevation|tilt|azimuth|apikey|api_key\" /var/folders/61/v3bbq5z53x3293f0jj6217y80000gq/T/generate_testcases_raw_1.txt)",
+      "Bash(cp .claude/skills/test-generator/generated_pytest_modules/test_countries_20260521_110816Z.py tests/)",
+      "Bash(cp .claude/skills/test-generator/generated_pytest_modules/test_data_countries_20260521_110816Z.json tests/)",
+      "Bash(cp .claude/skills/test-generator/generated_pytest_modules/test_weather_20260521_110816Z.py tests/)",
+      "Bash(cp .claude/skills/test-generator/generated_pytest_modules/test_data_weather_20260521_110816Z.json tests/)",
+      "Bash(make lint *)",
+      "Bash(tee /tmp/agent2_lint.log)",
+      "Bash(echo \"EXIT_CODE=$?\")",
+      "Bash(tail -50 /tmp/agent2_lint.log)",
+      "Bash(grep -E \"^[0-9]+$\" /tmp/agent2_lint.log)",
+      "Bash(awk -F: '/^\\\\.\\\\// {print $1}' /tmp/agent2_lint.log)"
+    ]
+  }
+}

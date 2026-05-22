@@ -1,0 +1,15 @@
+# Maps a component name to the pytest marker the framework already registers
+# in pytest.ini. When the skill detects a component (from OpenAPI tag, URL host,
+# Jira component, or filename), it resolves to the marker below.
+
+components:
+  countries:
+    marker: countries
+    base_url_hint: restcountries.com
+  weather:
+    marker: weather
+    base_url_hint: open-meteo.com
+
+# Default applied if no component matches. Skill prints a warning when this fires.
+default:
+  marker: regression

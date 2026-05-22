@@ -1,0 +1,79 @@
+# Canonical column order. write_output.py reads this for every output format
+# so xlsx, csv, json, txt, docx, and pdf all share the same shape.
+
+columns:
+  - name: tc_id
+    type: string
+    description: Deterministic ID — TC_<COMPONENT>_<sha1[:6]>
+  - name: title
+    type: string
+    description: 'One-line label of the case (e.g. "GET /v1/forecast happy path")'
+  - name: description
+    type: string
+    description: Longer human-readable explanation of what the case does and expects
+  - name: case_type
+    type: enum
+    values: [positive, negative, edge]
+    description: Roll-up of category — positive | negative | edge
+  - name: category
+    type: enum
+    values: [positive, async_accepted, negative_validation, negative_auth, negative_not_found, negative_conflict, negative_rate, negative_client_4xx, negative_server_5xx, schema, boundary, i18n, idempotency, cross_env, cross_api_workflow, performance]
+  - name: priority
+    type: enum
+    values: [P0, P1, P2]
+  - name: component
+    type: string
+    description: Resolved from config/component_markers.yaml
+  - name: pytest_marker
+    type: string
+    description: e.g. "@pytest.mark.countries"
+  - name: endpoint_url
+    type: string
+  - name: method
+    type: enum
+    values: [GET, POST, PUT, PATCH, DELETE]
+  - name: path_params
+    type: json
+  - name: query_params
+    type: json
+  - name: headers
+    type: json
+  - name: request_body
+    type: json
+  - name: preconditions
+    type: string
+  - name: expected_status
+    type: int
+  - name: expected_response_fields
+    type: json
+    description: Dot-paths for every property in the response schema (walks array items too)
+  - name: expected_response_body
+    type: json
+    description: 'Sample response body. Positive cases: rendered from response_schema. Errors: {"status": <code>, "message": "<reason>"}.'
+  - name: expected_response_time_ms
+    type: int
+    description: Pulled from repo config/environments.yaml
+  - name: equivalence_class
+    type: string
+    description: e.g. "missing-required", "max+1", "wrong-type"
+  - name: test_data_ref
+    type: string
+    description: Suggested key in test_data/*.json
+  - name: validator_ref
+    type: string
+    description: Suggested validate_* function in src/validators.py
+  - name: traceability
+    type: string
+    description: URL / Jira key / Confluence page / file:line
+  - name: source_excerpt
+    type: string
+    description: Quoted snippet that justified the case (PII-scrubbed)
+  - name: workflow_steps
+    type: json
+    description: Ordered list of {component, method, path, params, extract, validate} steps for cross_api_workflow rows; empty for single-API rows
+  - name: review_status
+    type: enum
+    values: [Draft, Reviewed, Approved]
+    default: Draft
+  - name: notes
+    type: string

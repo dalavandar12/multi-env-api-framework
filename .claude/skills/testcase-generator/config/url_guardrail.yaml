@@ -1,0 +1,38 @@
+# URL safety guardrail config for fetch_url.py
+# Heuristic checks only. No external API dependency.
+
+allowed_schemes:
+  - https
+
+# Standard private / loopback / link-local ranges — always rejected.
+blocked_ip_networks:
+  - 127.0.0.0/8
+  - 10.0.0.0/8
+  - 172.16.0.0/12
+  - 192.168.0.0/16
+  - 169.254.0.0/16
+  - 0.0.0.0/8
+  - ::1/128
+  - fc00::/7
+  - fe80::/10
+
+# TLDs to refuse outright. Add internal corporate TLDs here.
+blocked_tlds:
+  - zip
+  - mov
+
+allowed_content_types:
+  - text/html
+  - text/plain
+  - application/json
+  - application/yaml
+  - application/x-yaml
+  - application/pdf
+
+# Hard caps
+max_redirects: 5
+max_bytes: 10485760        # 10 MB
+request_timeout_seconds: 15
+
+# robots.txt enforcement: true = honor Disallow, false = ignore
+respect_robots_txt: false

@@ -1,0 +1,2249 @@
+{
+  "countries__GET__/all": {
+    "positive": [
+      {
+        "tc_id": "TC_COUNTRIES_55257d",
+        "title": "GET https://restcountries.com/v3.1/all: happy path",
+        "description": "Send valid required params to GET https://restcountries.com/v3.1/all; expect 2xx with documented fields.",
+        "category": "positive",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "happy",
+        "path_params": {},
+        "query_params": {
+          "fields": "name,capital,population"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/all",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_ab1fac",
+        "title": "GET https://restcountries.com/v3.1/all: idempotent re-application",
+        "description": "GET re-application — verify identical result across repeated calls.",
+        "category": "idempotency",
+        "case_type": "positive",
+        "priority": "P2",
+        "equivalence_class": "get-idempotent",
+        "path_params": {},
+        "query_params": {
+          "fields": "name,capital,population"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/all",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "negative": [
+      {
+        "tc_id": "TC_COUNTRIES_c4fdc4",
+        "title": "GET https://restcountries.com/v3.1/all: burst rate limit",
+        "description": "Send burst above documented rate limit; expect HTTP 429.",
+        "category": "negative_rate",
+        "case_type": "negative",
+        "priority": "P2",
+        "equivalence_class": "burst",
+        "path_params": {},
+        "query_params": {
+          "fields": "name,capital,population"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 429,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 429,
+          "message": "Too Many Requests — rate limit exceeded"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/all",
+        "seed_source": "Germany@index_0",
+        "skip": true,
+        "skip_reason": "429 needs sustained burst load — not reachable in a single GET"
+      }
+    ],
+    "edge": [
+      {
+        "tc_id": "TC_COUNTRIES_d43018",
+        "title": "GET https://restcountries.com/v3.1/all: UTF-8 / emoji / RTL inputs",
+        "description": "Send UTF-8 / emoji / RTL / injection inputs; expect graceful handling (no 500).",
+        "category": "i18n",
+        "case_type": "edge",
+        "priority": "P2",
+        "equivalence_class": "utf8-emoji-rtl",
+        "path_params": {},
+        "query_params": {
+          "fields": "name,capital,population"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/all",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "performance": [
+      {
+        "tc_id": "TC_COUNTRIES_2febc4",
+        "title": "GET https://restcountries.com/v3.1/all: response time ≤ 2000ms",
+        "description": "Verify response time <= 2000 ms (from config/environments.yaml).",
+        "category": "performance",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "response-time-threshold",
+        "path_params": {},
+        "query_params": {
+          "fields": "name,capital,population"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/all",
+        "seed_source": "Germany@index_0"
+      }
+    ]
+  },
+  "countries__GET__/name/{name}": {
+    "positive": [
+      {
+        "tc_id": "TC_COUNTRIES_82a9db",
+        "title": "GET https://restcountries.com/v3.1/name/{name}: happy path",
+        "description": "Send valid required params to GET https://restcountries.com/v3.1/name/{name}; expect 2xx with documented fields.",
+        "category": "positive",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "happy",
+        "path_params": {
+          "name": "Germany"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/name/{name}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_acc074",
+        "title": "GET https://restcountries.com/v3.1/name/{name}: idempotent re-application",
+        "description": "GET re-application — verify identical result across repeated calls.",
+        "category": "idempotency",
+        "case_type": "positive",
+        "priority": "P2",
+        "equivalence_class": "get-idempotent",
+        "path_params": {
+          "name": "Germany"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/name/{name}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "negative": [
+      {
+        "tc_id": "TC_COUNTRIES_eac972",
+        "title": "GET https://restcountries.com/v3.1/name/{name}: missing required 'name'",
+        "description": "Omit required parameter 'name'; expect HTTP 400 validation error.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "missing-required-name",
+        "path_params": {},
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/name/{name}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_f23a9a",
+        "title": "GET https://restcountries.com/v3.1/name/{name}: wrong type for 'name'",
+        "description": "Send wrong-type value for 'name' (e.g. string for int); expect HTTP 400.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "wrong-type-name",
+        "path_params": {
+          "name": "not-a-number"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/name/{name}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_ce45b0",
+        "title": "GET https://restcountries.com/v3.1/name/{name}: non-existent resource",
+        "description": "Use non-existent resource id; expect HTTP 404.",
+        "category": "negative_not_found",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "nonexistent-id",
+        "path_params": {
+          "name": "zzzzz_nonexistent_name"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/name/{name}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "edge": [
+      {
+        "tc_id": "TC_COUNTRIES_b6d8da",
+        "title": "GET https://restcountries.com/v3.1/name/{name}: UTF-8 / emoji / RTL inputs",
+        "description": "Send UTF-8 / emoji / RTL / injection inputs; expect graceful handling (no 500).",
+        "category": "i18n",
+        "case_type": "edge",
+        "priority": "P2",
+        "equivalence_class": "utf8-emoji-rtl",
+        "path_params": {
+          "name": "Germany"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/name/{name}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "performance": [
+      {
+        "tc_id": "TC_COUNTRIES_37b3f9",
+        "title": "GET https://restcountries.com/v3.1/name/{name}: response time ≤ 2000ms",
+        "description": "Verify response time <= 2000 ms (from config/environments.yaml).",
+        "category": "performance",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "response-time-threshold",
+        "path_params": {
+          "name": "Germany"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/name/{name}",
+        "seed_source": "Germany@index_0"
+      }
+    ]
+  },
+  "countries__GET__/alpha/{code}": {
+    "positive": [
+      {
+        "tc_id": "TC_COUNTRIES_57bf94",
+        "title": "GET https://restcountries.com/v3.1/alpha/{code}: happy path",
+        "description": "Send valid required params to GET https://restcountries.com/v3.1/alpha/{code}; expect 2xx with documented fields.",
+        "category": "positive",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "happy",
+        "path_params": {
+          "code": "BR"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha/{code}",
+        "seed_source": "Brazil@index_1"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_922899",
+        "title": "GET https://restcountries.com/v3.1/alpha/{code}: idempotent re-application",
+        "description": "GET re-application — verify identical result across repeated calls.",
+        "category": "idempotency",
+        "case_type": "positive",
+        "priority": "P2",
+        "equivalence_class": "get-idempotent",
+        "path_params": {
+          "code": "BR"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha/{code}",
+        "seed_source": "Brazil@index_1"
+      }
+    ],
+    "negative": [
+      {
+        "tc_id": "TC_COUNTRIES_a30f49",
+        "title": "GET https://restcountries.com/v3.1/alpha/{code}: missing required 'code'",
+        "description": "Omit required parameter 'code'; expect HTTP 400 validation error.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "missing-required-code",
+        "path_params": {},
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 400,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 400,
+          "message": "Bad Request — validation failed"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha/{code}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_288380",
+        "title": "GET https://restcountries.com/v3.1/alpha/{code}: wrong type for 'code'",
+        "description": "Send wrong-type value for 'code' (e.g. string for int); expect HTTP 400.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "wrong-type-code",
+        "path_params": {
+          "code": "not-a-number"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 400,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 400,
+          "message": "Bad Request — validation failed"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha/{code}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_5474bb",
+        "title": "GET https://restcountries.com/v3.1/alpha/{code}: non-existent resource",
+        "description": "Use non-existent resource id; expect HTTP 404.",
+        "category": "negative_not_found",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "nonexistent-id",
+        "path_params": {
+          "code": "zzzzz_nonexistent_code"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 400,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 400,
+          "message": "Bad Request — validation failed"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha/{code}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "edge": [
+      {
+        "tc_id": "TC_COUNTRIES_851594",
+        "title": "GET https://restcountries.com/v3.1/alpha/{code}: UTF-8 / emoji / RTL inputs",
+        "description": "Send UTF-8 / emoji / RTL / injection inputs; expect graceful handling (no 500).",
+        "category": "i18n",
+        "case_type": "edge",
+        "priority": "P2",
+        "equivalence_class": "utf8-emoji-rtl",
+        "path_params": {
+          "code": "DE"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha/{code}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "performance": [
+      {
+        "tc_id": "TC_COUNTRIES_7a371f",
+        "title": "GET https://restcountries.com/v3.1/alpha/{code}: response time ≤ 2000ms",
+        "description": "Verify response time <= 2000 ms (from config/environments.yaml).",
+        "category": "performance",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "response-time-threshold",
+        "path_params": {
+          "code": "DE"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha/{code}",
+        "seed_source": "Germany@index_0"
+      }
+    ]
+  },
+  "countries__GET__/alpha": {
+    "positive": [
+      {
+        "tc_id": "TC_COUNTRIES_d993e0",
+        "title": "GET https://restcountries.com/v3.1/alpha: happy path",
+        "description": "Send valid required params to GET https://restcountries.com/v3.1/alpha; expect 2xx with documented fields.",
+        "category": "positive",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "happy",
+        "path_params": {},
+        "query_params": {
+          "codes": "BR"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha",
+        "seed_source": "Brazil@index_1"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_553b81",
+        "title": "GET https://restcountries.com/v3.1/alpha: idempotent re-application",
+        "description": "GET re-application — verify identical result across repeated calls.",
+        "category": "idempotency",
+        "case_type": "positive",
+        "priority": "P2",
+        "equivalence_class": "get-idempotent",
+        "path_params": {},
+        "query_params": {
+          "codes": "BR"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha",
+        "seed_source": "Brazil@index_1"
+      }
+    ],
+    "negative": [
+      {
+        "tc_id": "TC_COUNTRIES_e9f92a",
+        "title": "GET https://restcountries.com/v3.1/alpha: missing required 'codes'",
+        "description": "Omit required parameter 'codes'; expect HTTP 400 validation error.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "missing-required-codes",
+        "path_params": {},
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 400,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 400,
+          "message": "Bad Request — validation failed"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_6571c2",
+        "title": "GET https://restcountries.com/v3.1/alpha: wrong type for 'codes'",
+        "description": "Send wrong-type value for 'codes' (e.g. string for int); expect HTTP 400.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "wrong-type-codes",
+        "path_params": {},
+        "query_params": {
+          "codes": "not-a-number"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 400,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 400,
+          "message": "Bad Request — validation failed"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_6b14e6",
+        "title": "GET https://restcountries.com/v3.1/alpha: burst rate limit",
+        "description": "Send burst above documented rate limit; expect HTTP 429.",
+        "category": "negative_rate",
+        "case_type": "negative",
+        "priority": "P2",
+        "equivalence_class": "burst",
+        "path_params": {},
+        "query_params": {
+          "codes": "DE"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 429,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 429,
+          "message": "Too Many Requests — rate limit exceeded"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha",
+        "seed_source": "Germany@index_0",
+        "skip": true,
+        "skip_reason": "429 needs sustained burst load — not reachable in a single GET"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_3a3f05",
+        "title": "GET https://restcountries.com/v3.1/alpha: documented 404",
+        "description": "Use non-existent resource id; expect HTTP 404.",
+        "category": "negative_not_found",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "status-404",
+        "path_params": {},
+        "query_params": {
+          "codes": "DE"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha",
+        "seed_source": "Germany@index_0",
+        "skip": true,
+        "skip_reason": "404 is not triggerable for this query-only endpoint in a single request"
+      }
+    ],
+    "edge": [
+      {
+        "tc_id": "TC_COUNTRIES_4b1091",
+        "title": "GET https://restcountries.com/v3.1/alpha: UTF-8 / emoji / RTL inputs",
+        "description": "Send UTF-8 / emoji / RTL / injection inputs; expect graceful handling (no 500).",
+        "category": "i18n",
+        "case_type": "edge",
+        "priority": "P2",
+        "equivalence_class": "utf8-emoji-rtl",
+        "path_params": {},
+        "query_params": {
+          "codes": "DE"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "performance": [
+      {
+        "tc_id": "TC_COUNTRIES_c33709",
+        "title": "GET https://restcountries.com/v3.1/alpha: response time ≤ 2000ms",
+        "description": "Verify response time <= 2000 ms (from config/environments.yaml).",
+        "category": "performance",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "response-time-threshold",
+        "path_params": {},
+        "query_params": {
+          "codes": "DE"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/alpha",
+        "seed_source": "Germany@index_0"
+      }
+    ]
+  },
+  "countries__GET__/capital/{capital}": {
+    "positive": [
+      {
+        "tc_id": "TC_COUNTRIES_188a95",
+        "title": "GET https://restcountries.com/v3.1/capital/{capital}: happy path",
+        "description": "Send valid required params to GET https://restcountries.com/v3.1/capital/{capital}; expect 2xx with documented fields.",
+        "category": "positive",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "happy",
+        "path_params": {
+          "capital": "Canberra"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/capital/{capital}",
+        "seed_source": "Australia@index_2"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_813a03",
+        "title": "GET https://restcountries.com/v3.1/capital/{capital}: idempotent re-application",
+        "description": "GET re-application — verify identical result across repeated calls.",
+        "category": "idempotency",
+        "case_type": "positive",
+        "priority": "P2",
+        "equivalence_class": "get-idempotent",
+        "path_params": {
+          "capital": "Canberra"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/capital/{capital}",
+        "seed_source": "Australia@index_2"
+      }
+    ],
+    "negative": [
+      {
+        "tc_id": "TC_COUNTRIES_1ed693",
+        "title": "GET https://restcountries.com/v3.1/capital/{capital}: missing required 'capital'",
+        "description": "Omit required parameter 'capital'; expect HTTP 400 validation error.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "missing-required-capital",
+        "path_params": {},
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/capital/{capital}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_920366",
+        "title": "GET https://restcountries.com/v3.1/capital/{capital}: wrong type for 'capital'",
+        "description": "Send wrong-type value for 'capital' (e.g. string for int); expect HTTP 400.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "wrong-type-capital",
+        "path_params": {
+          "capital": "not-a-number"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/capital/{capital}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_9820d1",
+        "title": "GET https://restcountries.com/v3.1/capital/{capital}: non-existent resource",
+        "description": "Use non-existent resource id; expect HTTP 404.",
+        "category": "negative_not_found",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "nonexistent-id",
+        "path_params": {
+          "capital": "zzzzz_nonexistent_capital"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/capital/{capital}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "edge": [
+      {
+        "tc_id": "TC_COUNTRIES_9eaa6a",
+        "title": "GET https://restcountries.com/v3.1/capital/{capital}: UTF-8 / emoji / RTL inputs",
+        "description": "Send UTF-8 / emoji / RTL / injection inputs; expect graceful handling (no 500).",
+        "category": "i18n",
+        "case_type": "edge",
+        "priority": "P2",
+        "equivalence_class": "utf8-emoji-rtl",
+        "path_params": {
+          "capital": "Berlin"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/capital/{capital}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "performance": [
+      {
+        "tc_id": "TC_COUNTRIES_718808",
+        "title": "GET https://restcountries.com/v3.1/capital/{capital}: response time ≤ 2000ms",
+        "description": "Verify response time <= 2000 ms (from config/environments.yaml).",
+        "category": "performance",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "response-time-threshold",
+        "path_params": {
+          "capital": "Berlin"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/capital/{capital}",
+        "seed_source": "Germany@index_0"
+      }
+    ]
+  },
+  "countries__GET__/currency/{currency}": {
+    "positive": [
+      {
+        "tc_id": "TC_COUNTRIES_298ad3",
+        "title": "GET https://restcountries.com/v3.1/currency/{currency}: happy path",
+        "description": "Send valid required params to GET https://restcountries.com/v3.1/currency/{currency}; expect 2xx with documented fields.",
+        "category": "positive",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "happy",
+        "path_params": {
+          "currency": "AUD"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/currency/{currency}",
+        "seed_source": "Australia@index_2"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_947f7d",
+        "title": "GET https://restcountries.com/v3.1/currency/{currency}: idempotent re-application",
+        "description": "GET re-application — verify identical result across repeated calls.",
+        "category": "idempotency",
+        "case_type": "positive",
+        "priority": "P2",
+        "equivalence_class": "get-idempotent",
+        "path_params": {
+          "currency": "AUD"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/currency/{currency}",
+        "seed_source": "Australia@index_2"
+      }
+    ],
+    "negative": [
+      {
+        "tc_id": "TC_COUNTRIES_b2203a",
+        "title": "GET https://restcountries.com/v3.1/currency/{currency}: missing required 'currency'",
+        "description": "Omit required parameter 'currency'; expect HTTP 400 validation error.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "missing-required-currency",
+        "path_params": {},
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/currency/{currency}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_704013",
+        "title": "GET https://restcountries.com/v3.1/currency/{currency}: wrong type for 'currency'",
+        "description": "Send wrong-type value for 'currency' (e.g. string for int); expect HTTP 400.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "wrong-type-currency",
+        "path_params": {
+          "currency": "not-a-number"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/currency/{currency}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_62e1f7",
+        "title": "GET https://restcountries.com/v3.1/currency/{currency}: non-existent resource",
+        "description": "Use non-existent resource id; expect HTTP 404.",
+        "category": "negative_not_found",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "nonexistent-id",
+        "path_params": {
+          "currency": "zzzzz_nonexistent_currency"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/currency/{currency}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "edge": [
+      {
+        "tc_id": "TC_COUNTRIES_2424cd",
+        "title": "GET https://restcountries.com/v3.1/currency/{currency}: UTF-8 / emoji / RTL inputs",
+        "description": "Send UTF-8 / emoji / RTL / injection inputs; expect graceful handling (no 500).",
+        "category": "i18n",
+        "case_type": "edge",
+        "priority": "P2",
+        "equivalence_class": "utf8-emoji-rtl",
+        "path_params": {
+          "currency": "EUR"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/currency/{currency}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "performance": [
+      {
+        "tc_id": "TC_COUNTRIES_317b03",
+        "title": "GET https://restcountries.com/v3.1/currency/{currency}: response time ≤ 2000ms",
+        "description": "Verify response time <= 2000 ms (from config/environments.yaml).",
+        "category": "performance",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "response-time-threshold",
+        "path_params": {
+          "currency": "EUR"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/currency/{currency}",
+        "seed_source": "Germany@index_0"
+      }
+    ]
+  },
+  "countries__GET__/lang/{language}": {
+    "positive": [
+      {
+        "tc_id": "TC_COUNTRIES_bea65c",
+        "title": "GET https://restcountries.com/v3.1/lang/{language}: happy path",
+        "description": "Send valid required params to GET https://restcountries.com/v3.1/lang/{language}; expect 2xx with documented fields.",
+        "category": "positive",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "happy",
+        "path_params": {
+          "language": "Spanish"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/lang/{language}",
+        "seed_source": "Argentina@index_3"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_eae898",
+        "title": "GET https://restcountries.com/v3.1/lang/{language}: idempotent re-application",
+        "description": "GET re-application — verify identical result across repeated calls.",
+        "category": "idempotency",
+        "case_type": "positive",
+        "priority": "P2",
+        "equivalence_class": "get-idempotent",
+        "path_params": {
+          "language": "Spanish"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/lang/{language}",
+        "seed_source": "Argentina@index_3"
+      }
+    ],
+    "negative": [
+      {
+        "tc_id": "TC_COUNTRIES_3c32b5",
+        "title": "GET https://restcountries.com/v3.1/lang/{language}: missing required 'language'",
+        "description": "Omit required parameter 'language'; expect HTTP 400 validation error.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "missing-required-language",
+        "path_params": {},
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/lang/{language}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_6f4e04",
+        "title": "GET https://restcountries.com/v3.1/lang/{language}: wrong type for 'language'",
+        "description": "Send wrong-type value for 'language' (e.g. string for int); expect HTTP 400.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "wrong-type-language",
+        "path_params": {
+          "language": "not-a-number"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/lang/{language}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_d12efc",
+        "title": "GET https://restcountries.com/v3.1/lang/{language}: non-existent resource",
+        "description": "Use non-existent resource id; expect HTTP 404.",
+        "category": "negative_not_found",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "nonexistent-id",
+        "path_params": {
+          "language": "zzzzz_nonexistent_language"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/lang/{language}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "edge": [
+      {
+        "tc_id": "TC_COUNTRIES_65e79c",
+        "title": "GET https://restcountries.com/v3.1/lang/{language}: UTF-8 / emoji / RTL inputs",
+        "description": "Send UTF-8 / emoji / RTL / injection inputs; expect graceful handling (no 500).",
+        "category": "i18n",
+        "case_type": "edge",
+        "priority": "P2",
+        "equivalence_class": "utf8-emoji-rtl",
+        "path_params": {
+          "language": "German"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/lang/{language}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "performance": [
+      {
+        "tc_id": "TC_COUNTRIES_49958a",
+        "title": "GET https://restcountries.com/v3.1/lang/{language}: response time ≤ 2000ms",
+        "description": "Verify response time <= 2000 ms (from config/environments.yaml).",
+        "category": "performance",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "response-time-threshold",
+        "path_params": {
+          "language": "German"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/lang/{language}",
+        "seed_source": "Germany@index_0"
+      }
+    ]
+  },
+  "countries__GET__/region/{region}": {
+    "positive": [
+      {
+        "tc_id": "TC_COUNTRIES_a0a096",
+        "title": "GET https://restcountries.com/v3.1/region/{region}: happy path",
+        "description": "Send valid required params to GET https://restcountries.com/v3.1/region/{region}; expect 2xx with documented fields.",
+        "category": "positive",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "happy",
+        "path_params": {
+          "region": "Americas"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/region/{region}",
+        "seed_source": "Argentina@index_3"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_115ef4",
+        "title": "GET https://restcountries.com/v3.1/region/{region}: idempotent re-application",
+        "description": "GET re-application — verify identical result across repeated calls.",
+        "category": "idempotency",
+        "case_type": "positive",
+        "priority": "P2",
+        "equivalence_class": "get-idempotent",
+        "path_params": {
+          "region": "Americas"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/region/{region}",
+        "seed_source": "Argentina@index_3"
+      }
+    ],
+    "negative": [
+      {
+        "tc_id": "TC_COUNTRIES_7617e2",
+        "title": "GET https://restcountries.com/v3.1/region/{region}: missing required 'region'",
+        "description": "Omit required parameter 'region'; expect HTTP 400 validation error.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "missing-required-region",
+        "path_params": {},
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/region/{region}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_3e7ad0",
+        "title": "GET https://restcountries.com/v3.1/region/{region}: wrong type for 'region'",
+        "description": "Send wrong-type value for 'region' (e.g. string for int); expect HTTP 400.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "wrong-type-region",
+        "path_params": {
+          "region": "not-a-number"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/region/{region}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_11ee30",
+        "title": "GET https://restcountries.com/v3.1/region/{region}: non-existent resource",
+        "description": "Use non-existent resource id; expect HTTP 404.",
+        "category": "negative_not_found",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "nonexistent-id",
+        "path_params": {
+          "region": "zzzzz_nonexistent_region"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/region/{region}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "edge": [
+      {
+        "tc_id": "TC_COUNTRIES_f121c1",
+        "title": "GET https://restcountries.com/v3.1/region/{region}: UTF-8 / emoji / RTL inputs",
+        "description": "Send UTF-8 / emoji / RTL / injection inputs; expect graceful handling (no 500).",
+        "category": "i18n",
+        "case_type": "edge",
+        "priority": "P2",
+        "equivalence_class": "utf8-emoji-rtl",
+        "path_params": {
+          "region": "Europe"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/region/{region}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "performance": [
+      {
+        "tc_id": "TC_COUNTRIES_9b310c",
+        "title": "GET https://restcountries.com/v3.1/region/{region}: response time ≤ 2000ms",
+        "description": "Verify response time <= 2000 ms (from config/environments.yaml).",
+        "category": "performance",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "response-time-threshold",
+        "path_params": {
+          "region": "Europe"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/region/{region}",
+        "seed_source": "Germany@index_0"
+      }
+    ]
+  },
+  "countries__GET__/subregion/{subregion}": {
+    "positive": [
+      {
+        "tc_id": "TC_COUNTRIES_05dc9f",
+        "title": "GET https://restcountries.com/v3.1/subregion/{subregion}: happy path",
+        "description": "Send valid required params to GET https://restcountries.com/v3.1/subregion/{subregion}; expect 2xx with documented fields.",
+        "category": "positive",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "happy",
+        "path_params": {
+          "subregion": "Eastern Asia"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/subregion/{subregion}",
+        "seed_source": "Japan@index_4"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_734213",
+        "title": "GET https://restcountries.com/v3.1/subregion/{subregion}: idempotent re-application",
+        "description": "GET re-application — verify identical result across repeated calls.",
+        "category": "idempotency",
+        "case_type": "positive",
+        "priority": "P2",
+        "equivalence_class": "get-idempotent",
+        "path_params": {
+          "subregion": "Eastern Asia"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/subregion/{subregion}",
+        "seed_source": "Japan@index_4"
+      }
+    ],
+    "negative": [
+      {
+        "tc_id": "TC_COUNTRIES_5e436f",
+        "title": "GET https://restcountries.com/v3.1/subregion/{subregion}: missing required 'subregion'",
+        "description": "Omit required parameter 'subregion'; expect HTTP 400 validation error.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "missing-required-subregion",
+        "path_params": {},
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/subregion/{subregion}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_7e07dc",
+        "title": "GET https://restcountries.com/v3.1/subregion/{subregion}: wrong type for 'subregion'",
+        "description": "Send wrong-type value for 'subregion' (e.g. string for int); expect HTTP 400.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "wrong-type-subregion",
+        "path_params": {
+          "subregion": "not-a-number"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/subregion/{subregion}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_ec3846",
+        "title": "GET https://restcountries.com/v3.1/subregion/{subregion}: non-existent resource",
+        "description": "Use non-existent resource id; expect HTTP 404.",
+        "category": "negative_not_found",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "nonexistent-id",
+        "path_params": {
+          "subregion": "zzzzz_nonexistent_subregion"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/subregion/{subregion}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "edge": [
+      {
+        "tc_id": "TC_COUNTRIES_09b226",
+        "title": "GET https://restcountries.com/v3.1/subregion/{subregion}: UTF-8 / emoji / RTL inputs",
+        "description": "Send UTF-8 / emoji / RTL / injection inputs; expect graceful handling (no 500).",
+        "category": "i18n",
+        "case_type": "edge",
+        "priority": "P2",
+        "equivalence_class": "utf8-emoji-rtl",
+        "path_params": {
+          "subregion": "Western Europe"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/subregion/{subregion}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "performance": [
+      {
+        "tc_id": "TC_COUNTRIES_2f3ec1",
+        "title": "GET https://restcountries.com/v3.1/subregion/{subregion}: response time ≤ 2000ms",
+        "description": "Verify response time <= 2000 ms (from config/environments.yaml).",
+        "category": "performance",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "response-time-threshold",
+        "path_params": {
+          "subregion": "Western Europe"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/subregion/{subregion}",
+        "seed_source": "Germany@index_0"
+      }
+    ]
+  },
+  "countries__GET__/demonym/{demonym}": {
+    "positive": [
+      {
+        "tc_id": "TC_COUNTRIES_deece7",
+        "title": "GET https://restcountries.com/v3.1/demonym/{demonym}: happy path",
+        "description": "Send valid required params to GET https://restcountries.com/v3.1/demonym/{demonym}; expect 2xx with documented fields.",
+        "category": "positive",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "happy",
+        "path_params": {
+          "demonym": "Japanese"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/demonym/{demonym}",
+        "seed_source": "Japan@index_4"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_1ffcbd",
+        "title": "GET https://restcountries.com/v3.1/demonym/{demonym}: idempotent re-application",
+        "description": "GET re-application — verify identical result across repeated calls.",
+        "category": "idempotency",
+        "case_type": "positive",
+        "priority": "P2",
+        "equivalence_class": "get-idempotent",
+        "path_params": {
+          "demonym": "Japanese"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/demonym/{demonym}",
+        "seed_source": "Japan@index_4"
+      }
+    ],
+    "negative": [
+      {
+        "tc_id": "TC_COUNTRIES_403900",
+        "title": "GET https://restcountries.com/v3.1/demonym/{demonym}: missing required 'demonym'",
+        "description": "Omit required parameter 'demonym'; expect HTTP 400 validation error.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "missing-required-demonym",
+        "path_params": {},
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/demonym/{demonym}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_514f97",
+        "title": "GET https://restcountries.com/v3.1/demonym/{demonym}: wrong type for 'demonym'",
+        "description": "Send wrong-type value for 'demonym' (e.g. string for int); expect HTTP 400.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "wrong-type-demonym",
+        "path_params": {
+          "demonym": "not-a-number"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/demonym/{demonym}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_626114",
+        "title": "GET https://restcountries.com/v3.1/demonym/{demonym}: non-existent resource",
+        "description": "Use non-existent resource id; expect HTTP 404.",
+        "category": "negative_not_found",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "nonexistent-id",
+        "path_params": {
+          "demonym": "zzzzz_nonexistent_demonym"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/demonym/{demonym}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "edge": [
+      {
+        "tc_id": "TC_COUNTRIES_d1af72",
+        "title": "GET https://restcountries.com/v3.1/demonym/{demonym}: UTF-8 / emoji / RTL inputs",
+        "description": "Send UTF-8 / emoji / RTL / injection inputs; expect graceful handling (no 500).",
+        "category": "i18n",
+        "case_type": "edge",
+        "priority": "P2",
+        "equivalence_class": "utf8-emoji-rtl",
+        "path_params": {
+          "demonym": "German"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/demonym/{demonym}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "performance": [
+      {
+        "tc_id": "TC_COUNTRIES_165f9a",
+        "title": "GET https://restcountries.com/v3.1/demonym/{demonym}: response time ≤ 2000ms",
+        "description": "Verify response time <= 2000 ms (from config/environments.yaml).",
+        "category": "performance",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "response-time-threshold",
+        "path_params": {
+          "demonym": "German"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/demonym/{demonym}",
+        "seed_source": "Germany@index_0"
+      }
+    ]
+  },
+  "countries__GET__/translation/{translation}": {
+    "positive": [
+      {
+        "tc_id": "TC_COUNTRIES_9aa4db",
+        "title": "GET https://restcountries.com/v3.1/translation/{translation}: happy path",
+        "description": "Send valid required params to GET https://restcountries.com/v3.1/translation/{translation}; expect 2xx with documented fields.",
+        "category": "positive",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "happy",
+        "path_params": {
+          "translation": "Japón"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/translation/{translation}",
+        "seed_source": "Japan@index_4"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_dc38ff",
+        "title": "GET https://restcountries.com/v3.1/translation/{translation}: idempotent re-application",
+        "description": "GET re-application — verify identical result across repeated calls.",
+        "category": "idempotency",
+        "case_type": "positive",
+        "priority": "P2",
+        "equivalence_class": "get-idempotent",
+        "path_params": {
+          "translation": "Japón"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/translation/{translation}",
+        "seed_source": "Japan@index_4"
+      }
+    ],
+    "negative": [
+      {
+        "tc_id": "TC_COUNTRIES_d04b97",
+        "title": "GET https://restcountries.com/v3.1/translation/{translation}: missing required 'translation'",
+        "description": "Omit required parameter 'translation'; expect HTTP 400 validation error.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "missing-required-translation",
+        "path_params": {},
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/translation/{translation}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_cef72c",
+        "title": "GET https://restcountries.com/v3.1/translation/{translation}: wrong type for 'translation'",
+        "description": "Send wrong-type value for 'translation' (e.g. string for int); expect HTTP 400.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "wrong-type-translation",
+        "path_params": {
+          "translation": "not-a-number"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/translation/{translation}",
+        "seed_source": "Germany@index_0"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_84c3c7",
+        "title": "GET https://restcountries.com/v3.1/translation/{translation}: non-existent resource",
+        "description": "Use non-existent resource id; expect HTTP 404.",
+        "category": "negative_not_found",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "nonexistent-id",
+        "path_params": {
+          "translation": "zzzzz_nonexistent_translation"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/translation/{translation}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "edge": [
+      {
+        "tc_id": "TC_COUNTRIES_fc5556",
+        "title": "GET https://restcountries.com/v3.1/translation/{translation}: UTF-8 / emoji / RTL inputs",
+        "description": "Send UTF-8 / emoji / RTL / injection inputs; expect graceful handling (no 500).",
+        "category": "i18n",
+        "case_type": "edge",
+        "priority": "P2",
+        "equivalence_class": "utf8-emoji-rtl",
+        "path_params": {
+          "translation": "Alemania"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/translation/{translation}",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "performance": [
+      {
+        "tc_id": "TC_COUNTRIES_d65088",
+        "title": "GET https://restcountries.com/v3.1/translation/{translation}: response time ≤ 2000ms",
+        "description": "Verify response time <= 2000 ms (from config/environments.yaml).",
+        "category": "performance",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "response-time-threshold",
+        "path_params": {
+          "translation": "Alemania"
+        },
+        "query_params": {},
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/translation/{translation}",
+        "seed_source": "Germany@index_0"
+      }
+    ]
+  },
+  "countries__GET__/independent": {
+    "positive": [
+      {
+        "tc_id": "TC_COUNTRIES_84958e",
+        "title": "GET https://restcountries.com/v3.1/independent: happy path",
+        "description": "Send valid required params to GET https://restcountries.com/v3.1/independent; expect 2xx with documented fields.",
+        "category": "positive",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "happy",
+        "path_params": {},
+        "query_params": {
+          "status": "true"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/independent",
+        "seed_source": "Japan@index_4"
+      },
+      {
+        "tc_id": "TC_COUNTRIES_be9997",
+        "title": "GET https://restcountries.com/v3.1/independent: idempotent re-application",
+        "description": "GET re-application — verify identical result across repeated calls.",
+        "category": "idempotency",
+        "case_type": "positive",
+        "priority": "P2",
+        "equivalence_class": "get-idempotent",
+        "path_params": {},
+        "query_params": {
+          "status": "true"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/independent",
+        "seed_source": "Japan@index_4"
+      }
+    ],
+    "edge": [
+      {
+        "tc_id": "TC_COUNTRIES_83c4e1",
+        "title": "GET https://restcountries.com/v3.1/independent: UTF-8 / emoji / RTL inputs",
+        "description": "Send UTF-8 / emoji / RTL / injection inputs; expect graceful handling (no 500).",
+        "category": "i18n",
+        "case_type": "edge",
+        "priority": "P2",
+        "equivalence_class": "utf8-emoji-rtl",
+        "path_params": {},
+        "query_params": {
+          "status": "true"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/independent",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "performance": [
+      {
+        "tc_id": "TC_COUNTRIES_fac08c",
+        "title": "GET https://restcountries.com/v3.1/independent: response time ≤ 2000ms",
+        "description": "Verify response time <= 2000 ms (from config/environments.yaml).",
+        "category": "performance",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "response-time-threshold",
+        "path_params": {},
+        "query_params": {
+          "status": "true"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [],
+        "expected_response_body": [
+          {}
+        ],
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/independent",
+        "seed_source": "Germany@index_0"
+      }
+    ],
+    "negative": [
+      {
+        "tc_id": "TC_COUNTRIES_d3588c",
+        "title": "GET https://restcountries.com/v3.1/independent: documented 404",
+        "description": "Use non-existent resource id; expect HTTP 404.",
+        "category": "negative_not_found",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "status-404",
+        "path_params": {},
+        "query_params": {
+          "status": "true"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 404,
+        "expected_response_fields": [],
+        "expected_response_body": {
+          "status": 404,
+          "message": "Not Found"
+        },
+        "expected_response_time_ms": 2000,
+        "traceability": "https://restcountries.com/v3.1/independent",
+        "seed_source": "Germany@index_0",
+        "skip": true,
+        "skip_reason": "404 is not triggerable for this query-only endpoint in a single request"
+      }
+    ]
+  }
+}

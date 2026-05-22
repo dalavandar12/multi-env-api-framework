@@ -1,0 +1,758 @@
+{
+  "weather__GET__/forecast": {
+    "positive": [
+      {
+        "tc_id": "TC_WEATHER_91423f",
+        "title": "GET /forecast: happy path",
+        "description": "Send valid required params to GET /forecast; expect 2xx with documented fields.",
+        "category": "positive",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "happy",
+        "path_params": {},
+        "query_params": {
+          "latitude": "-34.61",
+          "longitude": "-58.38",
+          "hourly": "temperature_2m",
+          "timezone": "America/Argentina/Buenos_Aires"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "latitude": -34.61,
+          "longitude": -58.38,
+          "elevation": 0.0,
+          "generationtime_ms": 0.0,
+          "utc_offset_seconds": 0,
+          "timezone": "America/Argentina/Buenos_Aires",
+          "timezone_abbreviation": "string",
+          "hourly_units": {},
+          "hourly": "temperature_2m"
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Buenos Aires@index_4"
+      },
+      {
+        "tc_id": "TC_WEATHER_e70007",
+        "title": "GET /forecast: missing required 'hourly'",
+        "description": "Omit required parameter 'hourly'; expect HTTP 400 validation error.",
+        "category": "positive",
+        "case_type": "positive",
+        "priority": "P1",
+        "equivalence_class": "missing-required-hourly",
+        "path_params": {},
+        "query_params": {
+          "latitude": "-34.61",
+          "longitude": "-58.38",
+          "hourly": "temperature_2m",
+          "timezone": "America/Argentina/Buenos_Aires"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "status": 400,
+          "message": "Bad Request — validation failed",
+          "latitude": -34.61,
+          "longitude": -58.38,
+          "timezone": "America/Argentina/Buenos_Aires",
+          "hourly": "temperature_2m"
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Buenos Aires@index_4"
+      },
+      {
+        "tc_id": "TC_WEATHER_494147",
+        "title": "GET /forecast: idempotent re-application",
+        "description": "GET re-application — verify identical result across repeated calls.",
+        "category": "idempotency",
+        "case_type": "positive",
+        "priority": "P2",
+        "equivalence_class": "get-idempotent",
+        "path_params": {},
+        "query_params": {
+          "latitude": "-34.61",
+          "longitude": "-58.38",
+          "hourly": "temperature_2m",
+          "timezone": "America/Argentina/Buenos_Aires"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "latitude": -34.61,
+          "longitude": -58.38,
+          "elevation": 0.0,
+          "generationtime_ms": 0.0,
+          "utc_offset_seconds": 0,
+          "timezone": "America/Argentina/Buenos_Aires",
+          "timezone_abbreviation": "string",
+          "hourly_units": {},
+          "hourly": "temperature_2m"
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Buenos Aires@index_4"
+      }
+    ],
+    "negative": [
+      {
+        "tc_id": "TC_WEATHER_401631",
+        "title": "GET /forecast: missing required 'latitude'",
+        "description": "Omit required parameter 'latitude'; expect HTTP 400 validation error.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "missing-required-latitude",
+        "path_params": {},
+        "query_params": {
+          "longitude": "13.41",
+          "hourly": "temperature_2m",
+          "timezone": "Europe/Berlin"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 400,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "status": 400,
+          "message": "Bad Request — validation failed"
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Berlin@index_0"
+      },
+      {
+        "tc_id": "TC_WEATHER_4c95d0",
+        "title": "GET /forecast: wrong type for 'latitude'",
+        "description": "Send wrong-type value for 'latitude' (e.g. string for int); expect HTTP 400.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "wrong-type-latitude",
+        "path_params": {},
+        "query_params": {
+          "latitude": "not-a-number",
+          "longitude": "13.41",
+          "hourly": "temperature_2m",
+          "timezone": "Europe/Berlin"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 400,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "status": 400,
+          "message": "Bad Request — validation failed"
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Berlin@index_0"
+      },
+      {
+        "tc_id": "TC_WEATHER_e40420",
+        "title": "GET /forecast: missing required 'longitude'",
+        "description": "Omit required parameter 'longitude'; expect HTTP 400 validation error.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "missing-required-longitude",
+        "path_params": {},
+        "query_params": {
+          "latitude": "52.52",
+          "hourly": "temperature_2m",
+          "timezone": "Europe/Berlin"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 400,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "status": 400,
+          "message": "Bad Request — validation failed"
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Berlin@index_0"
+      },
+      {
+        "tc_id": "TC_WEATHER_2c10dc",
+        "title": "GET /forecast: wrong type for 'longitude'",
+        "description": "Send wrong-type value for 'longitude' (e.g. string for int); expect HTTP 400.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "wrong-type-longitude",
+        "path_params": {},
+        "query_params": {
+          "latitude": "52.52",
+          "longitude": "not-a-number",
+          "hourly": "temperature_2m",
+          "timezone": "Europe/Berlin"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 400,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "status": 400,
+          "message": "Bad Request — validation failed"
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Berlin@index_0"
+      },
+      {
+        "tc_id": "TC_WEATHER_3f746d",
+        "title": "GET /forecast: wrong type for 'hourly'",
+        "description": "Send wrong-type value for 'hourly' (e.g. string for int); expect HTTP 400.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "wrong-type-hourly",
+        "path_params": {},
+        "query_params": {
+          "latitude": "52.52",
+          "longitude": "13.41",
+          "hourly": "not-a-number",
+          "timezone": "Europe/Berlin"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 400,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "status": 400,
+          "message": "Bad Request — validation failed"
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Berlin@index_0"
+      },
+      {
+        "tc_id": "TC_WEATHER_c183cb",
+        "title": "GET /forecast: enum violation 'hourly'",
+        "description": "Send value outside the enum for 'hourly'; expect HTTP 400.",
+        "category": "negative_validation",
+        "case_type": "negative",
+        "priority": "P1",
+        "equivalence_class": "enum-violation-hourly",
+        "path_params": {},
+        "query_params": {
+          "latitude": "52.52",
+          "longitude": "13.41",
+          "hourly": "__INVALID_ENUM__",
+          "timezone": "Europe/Berlin"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 400,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "status": 400,
+          "message": "Bad Request — validation failed"
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Berlin@index_0"
+      }
+    ],
+    "schema": [
+      {
+        "tc_id": "TC_WEATHER_b471a6",
+        "title": "GET /forecast: response schema validation",
+        "description": "Verify response contains every required schema field with the correct type.",
+        "category": "schema",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "schema-required-fields",
+        "path_params": {},
+        "query_params": {
+          "latitude": "52.52",
+          "longitude": "13.41",
+          "hourly": "temperature_2m",
+          "timezone": "Europe/Berlin"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "latitude": 52.52,
+          "longitude": 13.41,
+          "elevation": 0.0,
+          "generationtime_ms": 0.0,
+          "utc_offset_seconds": 0,
+          "timezone": "Europe/Berlin",
+          "timezone_abbreviation": "string",
+          "hourly_units": {},
+          "hourly": "temperature_2m"
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Berlin@index_0"
+      }
+    ],
+    "edge": [
+      {
+        "tc_id": "TC_WEATHER_0d5963",
+        "title": "GET /forecast: latitude min",
+        "description": "Boundary value 'min' for the first numeric required field.",
+        "category": "boundary",
+        "case_type": "edge",
+        "priority": "P1",
+        "equivalence_class": "min",
+        "path_params": {},
+        "query_params": {
+          "latitude": "52.52",
+          "longitude": "13.41",
+          "hourly": "temperature_2m",
+          "timezone": "Europe/Berlin"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "latitude": 0.0,
+          "longitude": 0.0,
+          "elevation": 0.0,
+          "generationtime_ms": 0.0,
+          "utc_offset_seconds": 0,
+          "timezone": "string",
+          "timezone_abbreviation": "string",
+          "hourly_units": {},
+          "hourly": {
+            "time": [
+              "string"
+            ],
+            "temperature_2m": [
+              0.0
+            ]
+          }
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Berlin@index_0"
+      },
+      {
+        "tc_id": "TC_WEATHER_ac5821",
+        "title": "GET /forecast: latitude min-1",
+        "description": "Boundary value 'min-1' for the first numeric required field.",
+        "category": "boundary",
+        "case_type": "edge",
+        "priority": "P1",
+        "equivalence_class": "min-1",
+        "path_params": {},
+        "query_params": {
+          "latitude": "52.52",
+          "longitude": "13.41",
+          "hourly": "temperature_2m",
+          "timezone": "Europe/Berlin"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 400,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "status": 400,
+          "message": "Bad Request — validation failed"
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Berlin@index_0"
+      },
+      {
+        "tc_id": "TC_WEATHER_9e885f",
+        "title": "GET /forecast: latitude max",
+        "description": "Boundary value 'max' for the first numeric required field.",
+        "category": "boundary",
+        "case_type": "edge",
+        "priority": "P1",
+        "equivalence_class": "max",
+        "path_params": {},
+        "query_params": {
+          "latitude": "52.52",
+          "longitude": "13.41",
+          "hourly": "temperature_2m",
+          "timezone": "Europe/Berlin"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "latitude": 0.0,
+          "longitude": 0.0,
+          "elevation": 0.0,
+          "generationtime_ms": 0.0,
+          "utc_offset_seconds": 0,
+          "timezone": "string",
+          "timezone_abbreviation": "string",
+          "hourly_units": {},
+          "hourly": {
+            "time": [
+              "string"
+            ],
+            "temperature_2m": [
+              0.0
+            ]
+          }
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Berlin@index_0"
+      },
+      {
+        "tc_id": "TC_WEATHER_0787b3",
+        "title": "GET /forecast: latitude max+1",
+        "description": "Boundary value 'max+1' for the first numeric required field.",
+        "category": "boundary",
+        "case_type": "edge",
+        "priority": "P1",
+        "equivalence_class": "max+1",
+        "path_params": {},
+        "query_params": {
+          "latitude": "52.52",
+          "longitude": "13.41",
+          "hourly": "temperature_2m",
+          "timezone": "Europe/Berlin"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 400,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "status": 400,
+          "message": "Bad Request — validation failed"
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Berlin@index_0"
+      },
+      {
+        "tc_id": "TC_WEATHER_26b268",
+        "title": "GET /forecast: UTF-8 / emoji / RTL inputs",
+        "description": "Send UTF-8 / emoji / RTL / injection inputs; expect graceful handling (no 500).",
+        "category": "i18n",
+        "case_type": "edge",
+        "priority": "P2",
+        "equivalence_class": "utf8-emoji-rtl",
+        "path_params": {},
+        "query_params": {
+          "latitude": "52.52",
+          "longitude": "13.41",
+          "hourly": "temperature_2m",
+          "timezone": "Europe/Berlin"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "latitude": 0.0,
+          "longitude": 0.0,
+          "elevation": 0.0,
+          "generationtime_ms": 0.0,
+          "utc_offset_seconds": 0,
+          "timezone": "string",
+          "timezone_abbreviation": "string",
+          "hourly_units": {},
+          "hourly": {
+            "time": [
+              "string"
+            ],
+            "temperature_2m": [
+              0.0
+            ]
+          }
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Berlin@index_0"
+      }
+    ],
+    "performance": [
+      {
+        "tc_id": "TC_WEATHER_42ec0e",
+        "title": "GET /forecast: response time ≤ 3000ms",
+        "description": "Verify response time <= 3000 ms (from config/environments.yaml).",
+        "category": "performance",
+        "case_type": "positive",
+        "priority": "P0",
+        "equivalence_class": "response-time-threshold",
+        "path_params": {},
+        "query_params": {
+          "latitude": "52.52",
+          "longitude": "13.41",
+          "hourly": "temperature_2m",
+          "timezone": "Europe/Berlin"
+        },
+        "headers": {
+          "Accept": "application/json"
+        },
+        "request_body": {},
+        "preconditions": "",
+        "expected_status": 200,
+        "expected_response_fields": [
+          "latitude",
+          "longitude",
+          "elevation",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "timezone_abbreviation",
+          "hourly_units",
+          "hourly",
+          "hourly.time",
+          "hourly.temperature_2m"
+        ],
+        "expected_response_body": {
+          "latitude": 52.52,
+          "longitude": 13.41,
+          "elevation": 0.0,
+          "generationtime_ms": 0.0,
+          "utc_offset_seconds": 0,
+          "timezone": "Europe/Berlin",
+          "timezone_abbreviation": "string",
+          "hourly_units": {},
+          "hourly": "temperature_2m"
+        },
+        "expected_response_time_ms": 3000,
+        "traceability": "https://api.open-meteo.com/v1/forecast",
+        "seed_source": "Berlin@index_0"
+      }
+    ]
+  }
+}

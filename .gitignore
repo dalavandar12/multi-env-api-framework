@@ -1,0 +1,34 @@
+# Python / pytest / mypy
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Allure (see make clean-allure)
+allure-results/
+allure-report/
+
+# Virtual environment
+.venv/
+
+# Skill generated outputs (regenerate via skills; purge with: make clean-skills)
+.claude/skills/testcase-generator/generated_spec_sheets/*
+!.claude/skills/testcase-generator/generated_spec_sheets/.gitkeep
+
+.claude/skills/test-data-generator/generated_test_data/*
+!.claude/skills/test-data-generator/generated_test_data/.gitkeep
+
+.claude/skills/test-generator/generated_pytest_modules/*
+!.claude/skills/test-generator/generated_pytest_modules/.gitkeep
+
+.claude/skills/test-generator/received_test_data/*
+!.claude/skills/test-generator/received_test_data/.gitkeep
+
+.claude/skills/validator-generator/generated_validators/*
+!.claude/skills/validator-generator/generated_validators/.gitkeep
+
+# Excel lock files from spec-sheet runs
+.claude/skills/testcase-generator/generated_spec_sheets/~$*
+
+.DS_Store
+**/.DS_Store

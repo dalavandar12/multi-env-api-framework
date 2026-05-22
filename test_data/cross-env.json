@@ -1,0 +1,32 @@
+[
+  {
+    "country_name": "germany",
+    "expected_capital": "Berlin",
+    "latitude": 52.52,
+    "longitude": 13.41
+  },
+  {
+    "country_name": "japan",
+    "expected_capital": "Tokyo",
+    "latitude": 35.68,
+    "longitude": 139.76
+  },
+  {
+    "country_name": "brazil",
+    "expected_capital": "Brasília",
+    "latitude": -23.55,
+    "longitude": -46.63
+  },
+  {
+    "country_name": "australia",
+    "expected_capital": "Canberra",
+    "latitude": -33.87,
+    "longitude": 151.21
+  },
+  {
+    "country_name": "argentina",
+    "expected_capital": "Buenos Aires",
+    "latitude": -34.61,
+    "longitude": -58.38
+  }
+]

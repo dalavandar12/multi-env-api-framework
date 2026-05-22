@@ -1,0 +1,44 @@
+# Curated schema for the Open-Meteo /v1/forecast response.
+
+component: weather
+validator_name: validate_weather_schema
+description: "Validates an Open-Meteo /v1/forecast response object"
+
+shape:
+  type: object
+  required: [latitude, longitude, timezone, hourly]
+  fields:
+    latitude:
+      type: number
+      min: -90
+      max: 90
+    longitude:
+      type: number
+      min: -180
+      max: 180
+    elevation:
+      type: number
+    generationtime_ms:
+      type: number
+      min: 0
+    utc_offset_seconds:
+      type: integer
+    timezone:
+      type: string
+      non_empty: true
+    timezone_abbreviation:
+      type: string
+    hourly:
+      type: object
+      required: [time, temperature_2m]
+      fields:
+        time:
+          type: array
+          item_type: string
+          non_empty: true
+        temperature_2m:
+          type: array
+          item_type: number_or_null
+          non_empty: true
+    hourly_units:
+      type: object

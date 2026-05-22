@@ -1,0 +1,13 @@
+environments:
+  countries:
+    base_url: https://restcountries.com/v3.1
+    max_response_time: 2.0
+    min_results_count: 1
+    region_min_country_count: 40
+
+  weather:
+    base_url: https://api.open-meteo.com/v1
+    max_response_time: 3.0
+    min_results_count: 1
+    temperature_min_c: -80.0
+    temperature_max_c: 60.0

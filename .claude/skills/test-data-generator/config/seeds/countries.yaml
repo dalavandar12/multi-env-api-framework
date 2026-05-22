@@ -1,0 +1,74 @@
+# Curated seed dataset for the REST Countries API.
+# Each record contains the fields needed to drive every documented endpoint.
+# Extend by appending records — same column structure, no script change required.
+
+records:
+  - country_name:    Germany
+    capital:         Berlin
+    currency_name:   Euro
+    currency_code:   EUR
+    alpha_2:         DE
+    alpha_3:         DEU
+    language:        German
+    demonym:         German
+    region:          Europe
+    subregion:       Western Europe
+    translation_es:  Alemania
+    latitude:        51.0
+    longitude:       10.0
+
+  - country_name:    Brazil
+    capital:         Brasília
+    currency_name:   Brazilian Real
+    currency_code:   BRL
+    alpha_2:         BR
+    alpha_3:         BRA
+    language:        Portuguese
+    demonym:         Brazilian
+    region:          Americas
+    subregion:       South America
+    translation_es:  Brasil
+    latitude:        -10.0
+    longitude:       -55.0
+
+  - country_name:    Australia
+    capital:         Canberra
+    currency_name:   Australian Dollar
+    currency_code:   AUD
+    alpha_2:         AU
+    alpha_3:         AUS
+    language:        English
+    demonym:         Australian
+    region:          Oceania
+    subregion:       Australia and New Zealand
+    translation_es:  Australia
+    latitude:        -25.0
+    longitude:       135.0
+
+  - country_name:    Argentina
+    capital:         Buenos Aires
+    currency_name:   Argentine Peso
+    currency_code:   ARS
+    alpha_2:         AR
+    alpha_3:         ARG
+    language:        Spanish
+    demonym:         Argentine
+    region:          Americas
+    subregion:       South America
+    translation_es:  Argentina
+    latitude:        -34.0
+    longitude:       -64.0
+
+  - country_name:    Japan
+    capital:         Tokyo
+    currency_name:   Japanese Yen
+    currency_code:   JPY
+    alpha_2:         JP
+    alpha_3:         JPN
+    language:        Japanese
+    demonym:         Japanese
+    region:          Asia
+    subregion:       Eastern Asia
+    translation_es:  Japón
+    latitude:        36.0
+    longitude:       138.0

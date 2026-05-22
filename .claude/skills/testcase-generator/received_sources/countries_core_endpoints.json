@@ -1,0 +1,336 @@
+[
+  {
+    "method": "GET",
+    "path": "https://restcountries.com/v3.1/all",
+    "summary": "List all countries",
+    "tags": ["countries"],
+    "params_required": [],
+    "params_optional": [
+      {
+        "name": "fields",
+        "in": "query",
+        "type": "string",
+        "format": null,
+        "enum": null,
+        "description": "Comma-separated list of fields to include"
+      }
+    ],
+    "request_schema": {},
+    "response_schema": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "status_codes": [200],
+    "examples": {
+      "valid": { "fields": "name,capital,population" }
+    },
+    "traceability": "https://restcountries.com/v3.1/all"
+  },
+  {
+    "method": "GET",
+    "path": "https://restcountries.com/v3.1/name/{name}",
+    "summary": "Search country by common name",
+    "tags": ["countries"],
+    "params_required": [
+      {
+        "name": "name",
+        "in": "path",
+        "type": "string",
+        "format": null,
+        "enum": null,
+        "description": "Country common name"
+      }
+    ],
+    "params_optional": [],
+    "request_schema": {},
+    "response_schema": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "status_codes": [200, 404],
+    "examples": {
+      "valid": { "name": "Germany" },
+      "invalid": { "name": "zzzzz_nonexistent_country" }
+    },
+    "traceability": "https://restcountries.com/v3.1/name/{name}"
+  },
+  {
+    "method": "GET",
+    "path": "https://restcountries.com/v3.1/alpha/{code}",
+    "summary": "Get country by alpha code",
+    "tags": ["countries"],
+    "params_required": [
+      {
+        "name": "code",
+        "in": "path",
+        "type": "string",
+        "format": null,
+        "enum": null,
+        "description": "ISO alpha code"
+      }
+    ],
+    "params_optional": [],
+    "request_schema": {},
+    "response_schema": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "status_codes": [200, 404],
+    "examples": {
+      "valid": { "code": "DE" },
+      "invalid": { "code": "ZZZ" }
+    },
+    "traceability": "https://restcountries.com/v3.1/alpha/{code}"
+  },
+  {
+    "method": "GET",
+    "path": "https://restcountries.com/v3.1/alpha",
+    "summary": "Get countries by comma-separated alpha codes",
+    "tags": ["countries"],
+    "params_required": [
+      {
+        "name": "codes",
+        "in": "query",
+        "type": "string",
+        "format": null,
+        "enum": null,
+        "description": "Comma-separated alpha codes"
+      }
+    ],
+    "params_optional": [],
+    "request_schema": {},
+    "response_schema": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "status_codes": [200, 404],
+    "examples": {
+      "valid": { "codes": "DE" },
+      "invalid": { "codes": "ZZZ" }
+    },
+    "traceability": "https://restcountries.com/v3.1/alpha"
+  },
+  {
+    "method": "GET",
+    "path": "https://restcountries.com/v3.1/capital/{capital}",
+    "summary": "Search by capital city",
+    "tags": ["countries"],
+    "params_required": [
+      {
+        "name": "capital",
+        "in": "path",
+        "type": "string",
+        "format": null,
+        "enum": null,
+        "description": "Capital city name"
+      }
+    ],
+    "params_optional": [],
+    "request_schema": {},
+    "response_schema": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "status_codes": [200, 404],
+    "examples": {
+      "valid": { "capital": "Berlin" },
+      "invalid": { "capital": "zzzzz_nonexistent_capital" }
+    },
+    "traceability": "https://restcountries.com/v3.1/capital/{capital}"
+  },
+  {
+    "method": "GET",
+    "path": "https://restcountries.com/v3.1/currency/{currency}",
+    "summary": "Search by currency code",
+    "tags": ["countries"],
+    "params_required": [
+      {
+        "name": "currency",
+        "in": "path",
+        "type": "string",
+        "format": null,
+        "enum": null,
+        "description": "Currency code"
+      }
+    ],
+    "params_optional": [],
+    "request_schema": {},
+    "response_schema": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "status_codes": [200, 404],
+    "examples": {
+      "valid": { "currency": "EUR" },
+      "invalid": { "currency": "ZZZ" }
+    },
+    "traceability": "https://restcountries.com/v3.1/currency/{currency}"
+  },
+  {
+    "method": "GET",
+    "path": "https://restcountries.com/v3.1/lang/{language}",
+    "summary": "Search by language",
+    "tags": ["countries"],
+    "params_required": [
+      {
+        "name": "language",
+        "in": "path",
+        "type": "string",
+        "format": null,
+        "enum": null,
+        "description": "Language name or code"
+      }
+    ],
+    "params_optional": [],
+    "request_schema": {},
+    "response_schema": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "status_codes": [200, 404],
+    "examples": {
+      "valid": { "language": "German" },
+      "invalid": { "language": "zzzzz_nonexistent_language" }
+    },
+    "traceability": "https://restcountries.com/v3.1/lang/{language}"
+  },
+  {
+    "method": "GET",
+    "path": "https://restcountries.com/v3.1/region/{region}",
+    "summary": "Search by region",
+    "tags": ["countries"],
+    "params_required": [
+      {
+        "name": "region",
+        "in": "path",
+        "type": "string",
+        "format": null,
+        "enum": null,
+        "description": "Region name"
+      }
+    ],
+    "params_optional": [],
+    "request_schema": {},
+    "response_schema": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "status_codes": [200, 404],
+    "examples": {
+      "valid": { "region": "Europe" },
+      "invalid": { "region": "zzzzz_nonexistent_region" }
+    },
+    "traceability": "https://restcountries.com/v3.1/region/{region}"
+  },
+  {
+    "method": "GET",
+    "path": "https://restcountries.com/v3.1/subregion/{subregion}",
+    "summary": "Search by subregion",
+    "tags": ["countries"],
+    "params_required": [
+      {
+        "name": "subregion",
+        "in": "path",
+        "type": "string",
+        "format": null,
+        "enum": null,
+        "description": "Subregion name"
+      }
+    ],
+    "params_optional": [],
+    "request_schema": {},
+    "response_schema": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "status_codes": [200, 404],
+    "examples": {
+      "valid": { "subregion": "Western Europe" },
+      "invalid": { "subregion": "zzzzz_nonexistent_subregion" }
+    },
+    "traceability": "https://restcountries.com/v3.1/subregion/{subregion}"
+  },
+  {
+    "method": "GET",
+    "path": "https://restcountries.com/v3.1/demonym/{demonym}",
+    "summary": "Search by demonym",
+    "tags": ["countries"],
+    "params_required": [
+      {
+        "name": "demonym",
+        "in": "path",
+        "type": "string",
+        "format": null,
+        "enum": null,
+        "description": "Demonym value"
+      }
+    ],
+    "params_optional": [],
+    "request_schema": {},
+    "response_schema": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "status_codes": [200, 404],
+    "examples": {
+      "valid": { "demonym": "German" },
+      "invalid": { "demonym": "zzzzz_nonexistent_demonym" }
+    },
+    "traceability": "https://restcountries.com/v3.1/demonym/{demonym}"
+  },
+  {
+    "method": "GET",
+    "path": "https://restcountries.com/v3.1/translation/{translation}",
+    "summary": "Search by translated country name",
+    "tags": ["countries"],
+    "params_required": [
+      {
+        "name": "translation",
+        "in": "path",
+        "type": "string",
+        "format": null,
+        "enum": null,
+        "description": "Translated country name"
+      }
+    ],
+    "params_optional": [],
+    "request_schema": {},
+    "response_schema": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "status_codes": [200, 404],
+    "examples": {
+      "valid": { "translation": "Alemania" },
+      "invalid": { "translation": "zzzzz_nonexistent_translation" }
+    },
+    "traceability": "https://restcountries.com/v3.1/translation/{translation}"
+  },
+  {
+    "method": "GET",
+    "path": "https://restcountries.com/v3.1/independent",
+    "summary": "Filter by independent status",
+    "tags": ["countries"],
+    "params_required": [],
+    "params_optional": [
+      {
+        "name": "status",
+        "in": "query",
+        "type": "string",
+        "format": null,
+        "enum": ["true", "false"],
+        "description": "Whether country is independent"
+      }
+    ],
+    "request_schema": {},
+    "response_schema": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "status_codes": [200, 404],
+    "examples": {
+      "valid": { "status": "true" }
+    },
+    "traceability": "https://restcountries.com/v3.1/independent"
+  }
+]

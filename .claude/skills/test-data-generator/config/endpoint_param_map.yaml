@@ -1,0 +1,120 @@
+# Maps each endpoint pattern to the seed-record fields that feed its path/query params.
+# Templates inside braces (e.g. "{country_name}") are substituted from the seed record.
+# Plain strings (e.g. "europe") are used as-is.
+#
+# Endpoint keys are matched against the relative path the framework's ApiClient sees —
+# the env's base_url path (e.g. /v3.1 or /v1) is already stripped by the consumer.
+
+countries:
+  "/all":
+    query_params:
+      fields: "name,capital,population"
+
+  "/name/{name}":
+    path_params:
+      name: "{country_name}"
+
+  "/alpha/{code}":
+    path_params:
+      code: "{alpha_2}"
+
+  "/alpha":
+    query_params:
+      codes: "{alpha_2}"
+
+  "/capital/{capital}":
+    path_params:
+      capital: "{capital}"
+
+  "/currency/{currency}":
+    path_params:
+      currency: "{currency_code}"
+
+  "/lang/{language}":
+    path_params:
+      language: "{language}"
+
+  "/region/{region}":
+    path_params:
+      region: "{region}"
+
+  "/subregion/{subregion}":
+    path_params:
+      subregion: "{subregion}"
+
+  "/demonym/{demonym}":
+    path_params:
+      demonym: "{demonym}"
+
+  "/translation/{translation}":
+    path_params:
+      translation: "{translation_es}"
+
+  "/independent":
+    query_params:
+      status: "true"
+
+weather:
+  "/forecast":
+    query_params:
+      latitude:  "{latitude}"
+      longitude: "{longitude}"
+      hourly:    "temperature_2m"
+      timezone:  "{timezone}"
+
+  "/archive":
+    query_params:
+      latitude:   "{latitude}"
+      longitude:  "{longitude}"
+      start_date: "{start_date}"
+      end_date:   "{end_date}"
+      hourly:     "temperature_2m"
+
+  "/elevation":
+    query_params:
+      latitude:  "{latitude}"
+      longitude: "{longitude}"
+
+  "/marine":
+    query_params:
+      latitude:  "{latitude}"
+      longitude: "{longitude}"
+      hourly:    "wave_height"
+
+  "/air-quality":
+    query_params:
+      latitude:  "{latitude}"
+      longitude: "{longitude}"
+      hourly:    "pm10"
+
+  "/flood":
+    query_params:
+      latitude:  "{latitude}"
+      longitude: "{longitude}"
+      daily:     "river_discharge"
+
+  "/ensemble":
+    query_params:
+      latitude:  "{latitude}"
+      longitude: "{longitude}"
+      hourly:    "temperature_2m"
+      models:    "icon_seamless"
+
+  "/seasonal":
+    query_params:
+      latitude:    "{latitude}"
+      longitude:   "{longitude}"
+      six_hourly:  "temperature_2m"
+
+  "/climate":
+    query_params:
+      latitude:   "{latitude}"
+      longitude:  "{longitude}"
+      start_date: "{start_date}"
+      end_date:   "{end_date}"
+      models:     "MRI_AGCM3_2_S"
+      daily:      "temperature_2m_mean"
+
+  "/search":
+    query_params:
+      name: "{city}"

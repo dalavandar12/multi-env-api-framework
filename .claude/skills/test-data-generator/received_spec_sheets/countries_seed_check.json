@@ -1,0 +1,9 @@
+[
+  {
+    "endpoint_url": "https://restcountries.com/v3.1/name/{name}",
+    "method": "GET",
+    "component": "countries",
+    "response_fields": ["name", "capital", "population"],
+    "status_codes": [200]
+  }
+]

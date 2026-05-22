@@ -1,0 +1,40 @@
+# Curated seed dataset for the Open-Meteo Weather API.
+# Each record is a (lat, lon) pair plus optional time-window for archive/forecast.
+# Reusable for /forecast, /archive, /elevation, /marine, /air-quality, /flood,
+# /ensemble, /seasonal, /climate — all of which take latitude+longitude.
+
+records:
+  - city:        Berlin
+    latitude:    52.52
+    longitude:   13.41
+    timezone:    Europe/Berlin
+    start_date:  "2025-01-01"
+    end_date:    "2025-01-07"
+
+  - city:        Tokyo
+    latitude:    35.68
+    longitude:   139.76
+    timezone:    Asia/Tokyo
+    start_date:  "2025-01-01"
+    end_date:    "2025-01-07"
+
+  - city:        Sydney
+    latitude:    -33.87
+    longitude:   151.21
+    timezone:    Australia/Sydney
+    start_date:  "2025-01-01"
+    end_date:    "2025-01-07"
+
+  - city:        Sao Paulo
+    latitude:    -23.55
+    longitude:   -46.63
+    timezone:    America/Sao_Paulo
+    start_date:  "2025-01-01"
+    end_date:    "2025-01-07"
+
+  - city:        Buenos Aires
+    latitude:    -34.61
+    longitude:   -58.38
+    timezone:    America/Argentina/Buenos_Aires
+    start_date:  "2025-01-01"
+    end_date:    "2025-01-07"

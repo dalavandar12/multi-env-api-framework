@@ -1,0 +1,11 @@
+{
+  "regions": [
+    {"name": "europe"}
+  ],
+  "name_lookups": [
+    {"name": "germany"}
+  ],
+  "all_field_projections": [
+    {"fields": "name,population"}
+  ]
+}
