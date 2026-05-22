@@ -465,3 +465,12 @@ Generation behavior is unchanged unless the user passes `--against`.
 - Kept the README implementation-oriented (how to run and interpret outcomes) rather than duplicating internal skill docs.
 - Follow-up: keep README command snippets aligned with `Makefile`, marker policy (`smoke`/`regression`), and CI workflow when future changes land.
 
+---
+
+## Session 5: ApiClient Retry and Timeout Hardening (2026-05-22)
+
+- Updated `src/client.py` to use `utils.poller.poller` for transport-level retries in `ApiClient._request()`.
+- Applied explicit HTTP timeout tuple defaults: connect timeout `5s`, read timeout `30s`; retry policy: `3` attempts with `1s` backoff.
+- Kept test code unchanged; retry/timeout behavior is centralized in the client so all environments inherit it.
+- Validation: lint remains green after the change (`make lint`).
+

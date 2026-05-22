@@ -11,9 +11,15 @@ from typing import Any
 import requests
 from requests import Response
 
+from utils.poller import poller
+
 LOG = logging.getLogger(__name__)
 
-DEFAULT_TIMEOUT = 10
+CONNECT_TIMEOUT_S = 5.0
+READ_TIMEOUT_S = 30.0
+REQUEST_TIMEOUT: tuple[float, float] = (CONNECT_TIMEOUT_S, READ_TIMEOUT_S)
+REQUEST_RETRIES = 3
+RETRY_BACKOFF_S = 1.0
 
 
 class ApiError(Exception):
@@ -56,13 +62,25 @@ class ApiClient:
 
     def _request(self, method: str, path: str, **kwargs: Any) -> Any:
         url = f"{self.base_url}{path}"
-        LOG.info("%s %s", method, url)
-
-        start = time.monotonic()
-        response: Response = self._session.request(
-            method, url, timeout=DEFAULT_TIMEOUT, **kwargs
+        request_kwargs: dict[str, Any] = dict(kwargs)
+        request_kwargs.setdefault("timeout", REQUEST_TIMEOUT)
+        LOG.info(
+            "%s %s (timeout=%s, retries=%d, backoff=%.1fs)",
+            method,
+            url,
+            request_kwargs["timeout"],
+            REQUEST_RETRIES,
+            RETRY_BACKOFF_S,
         )
-        elapsed = time.monotonic() - start
+
+        @poller(retries=REQUEST_RETRIES, wait=RETRY_BACKOFF_S)
+        def _request_with_retry() -> tuple[Response, float]:
+            start = time.monotonic()
+            response = self._session.request(method, url, **request_kwargs)
+            elapsed = time.monotonic() - start
+            return response, elapsed
+
+        response, elapsed = _request_with_retry()
 
         LOG.info(
             "%s %s → %d (%.3fs)", method, url, response.status_code, elapsed
